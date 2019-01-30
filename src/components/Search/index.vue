@@ -11,7 +11,7 @@ nav.panel
     :class=`{
       'is-active': index === pickedCard
     }`
-    @click='pickCard(index)'
+    @click='pickCard(index, client)'
   )
     Card(:client='client')
   .panel-block
@@ -22,7 +22,7 @@ nav.panel
 
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 import Card from './Card'
 
@@ -53,9 +53,13 @@ export default {
     })
   },
   methods: {
-    pickCard (index) {
+    pickCard (index, client) {
       this.pickedCard = index
-    }
+      this.pickClient(client)
+    },
+    ...mapActions('clients', {
+      pickClient: 'updateClient'
+    })
   }
 }
 </script>

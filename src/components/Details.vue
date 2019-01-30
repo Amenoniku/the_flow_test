@@ -1,59 +1,63 @@
 <template lang="pug">
 
 .card
-  .card-content
+  .card-content(v-if='isClient')
     .media
       .media-left
         figure.image.is-128x128
-          img(src='https://bulma.io/images/placeholders/128x128.png', alt='Placeholder image')
+          img(:src='client.general.avatar', alt='Avatar')
       .media-content
-        p.title.is-4 John Smith
-        p.subtitle.is-6 @johnsmith
+        p.title.is-3 {{ client.general.firstName }} {{ client.general.lastName }}
+        p.subtitle.is-4 {{ client.job.title }} - {{ client.job.company }}
     .content
-      | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      | Phasellus nec iaculis mauris. 
-      a @bulmaio
-      | .
-      a(href='#') #css
-      a(href='#') #responsive
+      p.subtitle.is-5 Address
+      span
+        strong City: 
+        | {{ client.address.city }}
       br
-      time(datetime='2016-1-1') 11:09 PM - 1 Jan 2016
+      span
+        strong Country: 
+        | {{ client.address.country }}
+      br
+      span
+        strong Street: 
+        | {{ client.address.street }}
+      br
+      span
+        strong Zip code: 
+        | {{ client.address.zipCode }}
+    .content
+      p.subtitle.is-5 Contants
+      span
+        strong Email: 
+        | {{ client.contact.email }}
+      br
+      span
+        strong Phone: 
+        | {{ client.contact.phone }}
+  .card-content(v-else)
+    p.title.is-3 Please pick some client
 
 </template>
 
 
 <script>
-// import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
-  name: 'Search',
-  data () {
-    return {
-      
-    }
-  },
+  name: 'Details',
   computed: {
-    // ...mapState('profile', {
-    //   user: state => state.user
-    // }),
-    // ...mapGetters('session', {
-    //   isAuth: 'isAuth'
-    // })
-  },
-  methods: {
-    // ...mapActions('profile', {
-    //   getUser: 'getInfo',
-    //   veriCheck: 'verifiCheck'
-    // })
-  },
-  created () {
-    
+    isClient () {
+      return Object.keys(this.client).length !== 0
+    },
+    ...mapState('clients', {
+      client: state => state.client
+    })
   }
 }
 </script>
 
 
 <style lang="sass">
-@import '../assets/styles/variables.sass'
 
 </style>
