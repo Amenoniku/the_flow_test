@@ -6,8 +6,14 @@ nav.panel
       input.input.is-small(type='text' placeholder='search' v-model='searchText')
       span.icon.is-small.is-left
         i.fas.fa-search(aria-hidden='true')
-  a.panel-block.is-active
-    Card
+  a.panel-block(
+    v-for='(client, index) in filteredClients'
+    :class=`{
+      'is-active': index === pickedCard
+    }`
+    @click='pickCard(index)'
+  )
+    Card(:client='client')
   .panel-block
     button.button.is-link.is-outlined.is-fullwidth(@click="searchText = ''")
       | reset search
@@ -16,6 +22,8 @@ nav.panel
 
 
 <script>
+import { mapState } from 'vuex'
+
 import Card from './Card'
 
 export default {
@@ -25,25 +33,24 @@ export default {
   },
   data () {
     return {
-      searchText: ''
+      searchText: '',
+      pickedCard: null
     }
   },
   computed: {
-    // ...mapState('profile', {
-    //   user: state => state.user
-    // }),
-    // ...mapGetters('session', {
-    //   isAuth: 'isAuth'
-    // })
+    filteredClients () {
+      let clients = this.clients
+      // if (searchText)
+      return clients
+    },
+    ...mapState('clients', {
+      clients: state => state.list
+    })
   },
   methods: {
-    // ...mapActions('profile', {
-    //   getUser: 'getInfo',
-    //   veriCheck: 'verifiCheck'
-    // })
-  },
-  created () {
-    
+    pickCard (index) {
+      this.pickedCard = index
+    }
   }
 }
 </script>

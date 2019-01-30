@@ -13,11 +13,9 @@ export default {
   actions: {
     getClients ({commit, dispatch}) {
       const DEV_MODE = process.env.NODE_ENV === 'development'
-      if (false) commit(GET_CLIENTS, require('../assets/data/clients.json'))
-      else fetch('https://jsonplaceholder.typicode.com/todos/5')
-        .then(response => {
-          console.log(response)
-          response.json()})
+      if (DEV_MODE) commit(GET_CLIENTS, require('../assets/data/clients.json'))
+      else fetch('/clients.json')
+        .then(res => res.json())
         .then(json => commit(GET_CLIENTS, json))
     }
   }

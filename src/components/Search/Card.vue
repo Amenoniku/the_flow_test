@@ -3,13 +3,13 @@
 article.media
   .media-left
     figure.image.is-64x64
-      img(src='https://bulma.io/images/placeholders/128x128.png', alt='Image')
+      img(:src='client.general.avatar' alt='Avatar')
   .media-content
     .content
       p
-        strong John Smith
+        strong {{ client.general.firstName }} {{ client.general.lastName }}
         br
-        small @johnsmith
+        small {{ client.job.title }}
 
 </template>
 
@@ -19,28 +19,7 @@ article.media
 
 export default {
   name: 'SCard',
-  data () {
-    return {
-      
-    }
-  },
-  computed: {
-    // ...mapState('profile', {
-    //   user: state => state.user
-    // }),
-    // ...mapGetters('session', {
-    //   isAuth: 'isAuth'
-    // })
-  },
-  methods: {
-    // ...mapActions('profile', {
-    //   getUser: 'getInfo',
-    //   veriCheck: 'verifiCheck'
-    // })
-  },
-  created () {
-    
-  }
+  props: [ 'client' ]
 }
 </script>
 
