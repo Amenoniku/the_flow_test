@@ -40,7 +40,12 @@ export default {
   computed: {
     filteredClients () {
       let clients = this.clients
-      // if (searchText)
+      let searchText = this.searchText.toLowerCase()
+      if (searchText) clients = clients.filter(item => {
+        let fName = item.general.firstName.toLowerCase()
+        let lName = item.general.lastName.toLowerCase()
+        return fName.includes(searchText) || lName.includes(searchText)
+      })
       return clients
     },
     ...mapState('clients', {
