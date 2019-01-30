@@ -11,6 +11,8 @@ section#app.section
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import Search from '@/components/Search'
 import Details from '@/components/Details'
 
@@ -19,6 +21,14 @@ export default {
   components: {
     Search,
     Details
+  },
+  methods: {
+    ...mapActions('clients', {
+      getClients: 'getClients'
+    })
+  },
+  created () {
+    this.getClients()
   }
 }
 </script>
