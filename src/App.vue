@@ -36,9 +36,4 @@ export default {
 <style lang="sass">
 @import './assets/styles/index.sass'
 
-#app
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif
-  // -webkit-font-smoothing: antialiased
-  // -moz-osx-font-smoothing: grayscale
-
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-nav.panel
+nav.c-search.panel
   .panel-block
     p.control.has-icons-left
       input.input.is-small(type='text' placeholder='search' v-model='searchText')

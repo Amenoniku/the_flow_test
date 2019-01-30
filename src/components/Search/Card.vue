@@ -1,6 +1,6 @@
 <template lang="pug">
 
-article.media
+article.c-s_card.media
   .media-left
     figure.image.is-64x64
       img(:src='client.general.avatar' alt='Avatar')

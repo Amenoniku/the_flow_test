@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.card
+.c-details.card
   .card-content(v-if='isClient')
     .media
       .media-left
